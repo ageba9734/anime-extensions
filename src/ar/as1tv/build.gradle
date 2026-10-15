@@ -1,0 +1,15 @@
+ext {
+    extName = 'Asia Drama'
+    extClass = '.As1tv'
+    extVersionCode = 1
+    isNsfw = false
+    libVersion = 16
+}
+
+apply plugin: "kei.plugins.extension.legacy"
+
+dependencies {
+    implementation(project(':lib:doodextractor'))
+    implementation(project(':lib:okruextractor'))
+    implementation(project(':lib:streamwishextractor'))
+}
