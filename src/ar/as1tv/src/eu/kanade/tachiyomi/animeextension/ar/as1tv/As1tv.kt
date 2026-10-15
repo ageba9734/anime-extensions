@@ -198,7 +198,7 @@ class As1tv : ParsedAnimeHttpSource() {
 
     private fun directVideos(text: String, referer: String, label: String): List<Video> {
         val vHeaders = headers.newBuilder().set("Referer", referer).build()
-        return Regex("""https?:\\?/\\?/[^s"'<>\\]+?\.(?:m3u8|mp4)[^s"'<>\\]*""")
+        return Regex("""https?:\\?/\\?/[^\s"'<>\\]+?\.(?:m3u8|mp4)[^\s"'<>\\]*""")
             .findAll(text)
             .map { it.value.replace("\\/", "/") }
             .distinct()
