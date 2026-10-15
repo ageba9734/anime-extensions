@@ -1,7 +1,7 @@
 ext {
     extName = 'Asia Drama'
     extClass = '.As1tv'
-    extVersionCode = 1
+    extVersionCode = 2
     isNsfw = false
     libVersion = 16
 }
