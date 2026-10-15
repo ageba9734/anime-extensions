@@ -1,0 +1,41 @@
+name: Asia Drama APK build
+
+on:
+  push:
+    branches:
+      - fix/asia-drama-build
+    paths:
+      - 'src/ar/as1tv/**'
+      - '.github/workflows/asia-drama-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build Asia Drama extension
+        run: ./gradlew :src:ar:as1tv:assembleDebug --stacktrace
+
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asia-drama-apk
+          path: src/ar/as1tv/build/outputs/apk/**/*.apk
+          if-no-files-found: error
